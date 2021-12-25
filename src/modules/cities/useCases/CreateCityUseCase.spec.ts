@@ -1,3 +1,5 @@
+import { AppError } from '@shared/errors/AppError';
+
 import { ICitiesRepository } from '../repositories/ICitiesRepository';
 import { CitiesRepositoryInMemory } from '../repositories/inMemory/CitiesRepositoryInMemory';
 import { CreateCityUseCase } from './CreateCityUseCase';
@@ -34,5 +36,15 @@ describe('CreateCityUseCase', () => {
 
     expect(city).toHaveProperty('id');
     expect(city).toHaveProperty('created_at');
+  });
+
+  it('should throw when try create a new city with conflicts (same name and state)', async () => {
+    const city = { name: 'duplicated_name', state: 'duplicated_state' };
+
+    await citiesRepositoryInMemory.create(city);
+
+    await expect(createCityUseCase.execute(city)).rejects.toEqual(
+      new AppError('City already exists', 409),
+    );
   });
 });
