@@ -14,6 +14,16 @@ services:
       - POSTGRES_DB=clientes
     volumes:
       - pgdata:/data/postgres
+  database_clientes_test:
+    image: postgres
+    container_name: database_clientes_test
+    restart: always
+    ports:
+      - 5433:5432
+    environment:
+      - POSTGRES_USER=docker
+      - POSTGRES_PASSWORD=clientes
+      - POSTGRES_DB=clientes_test
   app:
     build: .
     container_name: api-clientes

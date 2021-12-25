@@ -1,13 +1,30 @@
-{
-    "type": "postgres",
-    "port": 5432,
-    "host": "localhost",
-    "username": "docker",
-    "password": "clientes",
-    "database": "clientes",
-    "migrations": ["./src/shared/infra/typeorm/migrations/*.ts"],
-    "cli": {
-        "migrationsDir": "./src/shared/infra/typeorm/migrations"
+[
+    {
+        "name": "default",
+        "type": "postgres",
+        "port": 5432,
+        "host": "localhost",
+        "username": "docker",
+        "password": "clientes",
+        "database": "clientes",
+        "migrations": ["./src/shared/infra/typeorm/migrations/*.ts"],
+        "cli": {
+            "migrationsDir": "./src/shared/infra/typeorm/migrations"
+        },
+        "entities": ["./src/modules/**/entities/*.ts"]
     },
-    "entities": ["./src/modules/**/entities/*.ts"]
-}
+    {
+        "name": "test",
+        "type": "postgres",
+        "port": 5433,
+        "host": "localhost",
+        "username": "docker",
+        "password": "clientes",
+        "database": "clientes_test",
+        "migrations": ["./src/shared/infra/typeorm/migrations/*.ts"],
+        "cli": {
+            "migrationsDir": "./src/shared/infra/typeorm/migrations"
+        },
+        "entities": ["./src/modules/**/entities/*.ts"]
+    }
+]
