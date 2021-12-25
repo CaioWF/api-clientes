@@ -20,4 +20,19 @@ describe('CreateCityUseCase', () => {
     expect(city).toHaveProperty('id');
     expect(city).toHaveProperty('created_at');
   });
+
+  it('should be able to create cities with same name and different states', async () => {
+    await createCityUseCase.execute({
+      name: 'duplicated_name',
+      state: 'any_state',
+    });
+
+    const city = await createCityUseCase.execute({
+      name: 'duplicated_name',
+      state: 'another_state',
+    });
+
+    expect(city).toHaveProperty('id');
+    expect(city).toHaveProperty('created_at');
+  });
 });
