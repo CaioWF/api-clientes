@@ -17,7 +17,7 @@ export class CreateClient1640476772110 implements MigrationInterface {
             length: '100',
           },
           {
-            name: 'sex',
+            name: 'gender',
             type: 'enum',
             enum: ['M', 'F'],
           },

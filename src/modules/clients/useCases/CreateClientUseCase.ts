@@ -7,13 +7,13 @@ class CreateClientUseCase {
 
   async execute({
     full_name,
-    sex,
+    gender,
     birth_date,
     city_id,
   }: ICreateClientDTO): Promise<Client> {
     const client = await this.clientRepository.create({
       full_name,
-      sex,
+      gender,
       birth_date,
       city_id,
     });

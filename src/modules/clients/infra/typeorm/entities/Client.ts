@@ -19,7 +19,7 @@ class Client {
   full_name: string;
 
   @Column()
-  sex: string;
+  gender: string;
 
   @Column()
   birth_date: Date;
