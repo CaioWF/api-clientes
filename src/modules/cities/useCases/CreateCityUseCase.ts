@@ -1,11 +1,17 @@
+import { inject, injectable } from 'tsyringe';
+
 import { AppError } from '@shared/errors/AppError';
 
 import { ICreateCityDTO } from '../dtos/ICreateCityDTO';
 import { City } from '../infra/typeorm/entities/City';
 import { ICitiesRepository } from '../repositories/ICitiesRepository';
 
+@injectable()
 class CreateCityUseCase {
-  constructor(private citiesRepository: ICitiesRepository) {}
+  constructor(
+    @inject('CitiesRepository')
+    private citiesRepository: ICitiesRepository,
+  ) {}
 
   async execute({ name, state }: ICreateCityDTO): Promise<City> {
     const cityAlreadyxists = await this.citiesRepository.exists({
