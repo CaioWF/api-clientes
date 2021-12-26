@@ -24,6 +24,8 @@ class Client {
   @Column()
   birth_date: Date;
 
+  age: number;
+
   @ManyToOne(() => City)
   @JoinColumn({ name: 'city_id' })
   city: City;

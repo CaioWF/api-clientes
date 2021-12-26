@@ -11,7 +11,8 @@
         "cli": {
             "migrationsDir": "./src/shared/infra/typeorm/migrations"
         },
-        "entities": ["./src/modules/**/entities/*.ts"]
+        "entities": ["./src/modules/**/entities/*.ts"],
+        "subscribers": ["./src/modules/**/subscribers/*.ts"]
     },
     {
         "name": "test",
