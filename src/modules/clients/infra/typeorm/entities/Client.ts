@@ -10,6 +10,11 @@ import {
 
 import { City } from '@modules/cities/infra/typeorm/entities/City';
 
+enum GenderType {
+  MALE = 'M',
+  FEMALE = 'F',
+}
+
 @Entity('clients')
 class Client {
   @PrimaryColumn()
@@ -18,7 +23,7 @@ class Client {
   @Column()
   full_name: string;
 
-  @Column()
+  @Column({ type: 'enum', enum: GenderType })
   gender: string;
 
   @Column()
@@ -38,4 +43,4 @@ class Client {
   }
 }
 
-export { Client };
+export { Client, GenderType };
