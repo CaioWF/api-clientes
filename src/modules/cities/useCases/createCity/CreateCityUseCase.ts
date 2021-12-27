@@ -2,9 +2,9 @@ import { inject, injectable } from 'tsyringe';
 
 import { AppError } from '@shared/errors/AppError';
 
-import { ICreateCityDTO } from '../dtos/ICreateCityDTO';
-import { City } from '../infra/typeorm/entities/City';
-import { ICitiesRepository } from '../repositories/ICitiesRepository';
+import { ICreateCityDTO } from '../../dtos/ICreateCityDTO';
+import { City } from '../../infra/typeorm/entities/City';
+import { ICitiesRepository } from '../../repositories/ICitiesRepository';
 
 @injectable()
 class CreateCityUseCase {

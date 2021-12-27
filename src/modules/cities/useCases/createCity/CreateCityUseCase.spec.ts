@@ -1,7 +1,7 @@
+import { ICitiesRepository } from '@modules/cities/repositories/ICitiesRepository';
+import { CitiesRepositoryInMemory } from '@modules/cities/repositories/inMemory/CitiesRepositoryInMemory';
 import { AppError } from '@shared/errors/AppError';
 
-import { ICitiesRepository } from '../repositories/ICitiesRepository';
-import { CitiesRepositoryInMemory } from '../repositories/inMemory/CitiesRepositoryInMemory';
 import { CreateCityUseCase } from './CreateCityUseCase';
 
 describe('CreateCityUseCase', () => {
