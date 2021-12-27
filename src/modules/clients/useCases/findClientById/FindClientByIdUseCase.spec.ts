@@ -34,7 +34,7 @@ describe('FindClientByIdUseCase', () => {
   it('should be throw an error when user not be found', async () => {
     await expect(
       findClientByIdUseCase.execute(`${randomUUID()}`),
-    ).rejects.toEqual(new AppError('User not found', 404));
+    ).rejects.toEqual(new AppError('Client not found', 404));
   });
 
   it('should be throw an error when id is invalid', async () => {

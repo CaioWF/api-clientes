@@ -17,7 +17,7 @@ class FindClientByIdUseCase {
 
     const client = await this.clientsRepository.findById(id);
 
-    if (!client) throw new AppError('User not found', 404);
+    if (!client) throw new AppError('Client not found', 404);
 
     return client;
   }
