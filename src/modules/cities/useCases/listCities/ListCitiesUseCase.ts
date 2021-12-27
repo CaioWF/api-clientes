@@ -1,17 +1,17 @@
 import { inject, injectable } from 'tsyringe';
 
-import { IListCityDTO } from '../../dtos/IListCityDTO';
+import { IListCitiesDTO } from '../../dtos/IListCitiesDTO';
 import { City } from '../../infra/typeorm/entities/City';
 import { ICitiesRepository } from '../../repositories/ICitiesRepository';
 
 @injectable()
-class ListCityUseCase {
+class ListCitiesUseCase {
   constructor(
     @inject('CitiesRepository')
     private citiesRepository: ICitiesRepository,
   ) {}
 
-  async execute({ filters }: IListCityDTO): Promise<{
+  async execute({ filters }: IListCitiesDTO): Promise<{
     cities: City[];
     pagination: { skip: number; take: number };
   }> {
@@ -24,4 +24,4 @@ class ListCityUseCase {
   }
 }
 
-export { ListCityUseCase };
+export { ListCitiesUseCase };

@@ -1,15 +1,15 @@
 import { ICitiesRepository } from '@modules/cities/repositories/ICitiesRepository';
 import { CitiesRepositoryInMemory } from '@modules/cities/repositories/inMemory/CitiesRepositoryInMemory';
 
-import { ListCityUseCase } from './ListCityUseCase';
+import { ListCitiesUseCase } from './ListCitiesUseCase';
 
-describe('ListCityUseCase', () => {
+describe('ListCitiesUseCase', () => {
   let citiesRepositoryInMemory: ICitiesRepository;
-  let listCityUseCase: ListCityUseCase;
+  let listCitiesUseCase: ListCitiesUseCase;
 
   beforeEach(() => {
     citiesRepositoryInMemory = new CitiesRepositoryInMemory();
-    listCityUseCase = new ListCityUseCase(citiesRepositoryInMemory);
+    listCitiesUseCase = new ListCitiesUseCase(citiesRepositoryInMemory);
   });
 
   it('should be able to list cities paginated', async () => {
@@ -18,7 +18,7 @@ describe('ListCityUseCase', () => {
       state: 'state list',
     });
 
-    const listPaginated = await listCityUseCase.execute({ filters: {} });
+    const listPaginated = await listCitiesUseCase.execute({ filters: {} });
 
     expect(listPaginated).toHaveProperty('cities');
     expect(listPaginated).toHaveProperty('pagination');
@@ -36,7 +36,7 @@ describe('ListCityUseCase', () => {
       state: 'state list',
     });
 
-    const listPaginated = await listCityUseCase.execute({
+    const listPaginated = await listCitiesUseCase.execute({
       filters: { name: 'that return' },
     });
 
@@ -56,7 +56,7 @@ describe('ListCityUseCase', () => {
       state: 'state that not return',
     });
 
-    const listPaginated = await listCityUseCase.execute({
+    const listPaginated = await listCitiesUseCase.execute({
       filters: { state: 'that return' },
     });
 
@@ -76,7 +76,7 @@ describe('ListCityUseCase', () => {
       state: 'state',
     });
 
-    const listPaginated = await listCityUseCase.execute({
+    const listPaginated = await listCitiesUseCase.execute({
       filters: { skip: 1 },
     });
 
@@ -96,7 +96,7 @@ describe('ListCityUseCase', () => {
       state: 'state',
     });
 
-    const listPaginated = await listCityUseCase.execute({
+    const listPaginated = await listCitiesUseCase.execute({
       filters: { take: 1 },
     });
 
@@ -120,7 +120,7 @@ describe('ListCityUseCase', () => {
       state: 'state that not return 2',
     });
 
-    const listPaginated = await listCityUseCase.execute({
+    const listPaginated = await listCitiesUseCase.execute({
       filters: { name: 'city', state: 'state', skip: 1, take: 1 },
     });
 

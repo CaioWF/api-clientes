@@ -1,4 +1,4 @@
-interface IListCityDTO {
+interface IListCitiesDTO {
   filters: {
     name?: string;
     state?: string;
@@ -7,4 +7,4 @@ interface IListCityDTO {
   };
 }
 
-export { IListCityDTO };
+export { IListCitiesDTO };

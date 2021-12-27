@@ -1,5 +1,5 @@
 import { ICreateCityDTO } from '@modules/cities/dtos/ICreateCityDTO';
-import { IListCityDTO } from '@modules/cities/dtos/IListCityDTO';
+import { IListCitiesDTO } from '@modules/cities/dtos/IListCitiesDTO';
 import { City } from '@modules/cities/infra/typeorm/entities/City';
 
 import { ICitiesRepository } from '../ICitiesRepository';
@@ -17,7 +17,7 @@ class CitiesRepositoryInMemory implements ICitiesRepository {
     return city;
   }
 
-  async paginate({ filters }: IListCityDTO): Promise<City[]> {
+  async paginate({ filters }: IListCitiesDTO): Promise<City[]> {
     const cities = this.cities.filter(
       (city) =>
         (!filters.name || city.name.includes(filters.name)) &&
