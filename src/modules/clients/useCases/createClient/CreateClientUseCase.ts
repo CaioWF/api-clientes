@@ -12,7 +12,7 @@ import { AppError } from '@shared/errors/AppError';
 class CreateClientUseCase {
   constructor(
     @inject('ClientsRepository')
-    private clientRepository: IClientsRepository,
+    private clientsRepository: IClientsRepository,
   ) {}
 
   async execute({
@@ -24,7 +24,7 @@ class CreateClientUseCase {
     if (!Object.values(GenderType).some((g) => g === gender))
       throw new AppError('Unprocessable entity error', 422);
 
-    const client = await this.clientRepository.create({
+    const client = await this.clientsRepository.create({
       full_name,
       gender,
       birth_date,
