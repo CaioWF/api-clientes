@@ -41,4 +41,8 @@ describe('RemoveClientController', () => {
 
     await request(app).delete(`/clients/${id}`).expect(204);
   });
+
+  it('should return bad request when id is invalid', async () => {
+    await request(app).delete('/clients/invalid_id').expect(400);
+  });
 });
