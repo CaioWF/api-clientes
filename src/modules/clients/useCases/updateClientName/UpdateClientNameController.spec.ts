@@ -56,4 +56,13 @@ describe('UpdateClientNameController', () => {
       })
       .expect(400);
   });
+
+  it('should return not found when client not exists', async () => {
+    await request(app)
+      .patch(`/clients/${randomUUID()}`)
+      .send({
+        full_name: 'another_name',
+      })
+      .expect(404);
+  });
 });
