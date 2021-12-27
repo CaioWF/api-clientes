@@ -28,4 +28,10 @@ describe('FindClientByIdUseCase', () => {
 
     expect(client.id).toEqual(id);
   });
+
+  it('should be throw an error when user not be found', async () => {
+    await expect(
+      findClientByIdUseCase.execute('inexistent_user'),
+    ).rejects.toEqual(new AppError('User not found', 404));
+  });
 });
