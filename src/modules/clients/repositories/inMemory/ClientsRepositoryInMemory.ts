@@ -1,3 +1,5 @@
+import { DeleteResult } from 'typeorm';
+
 import { ICreateClientDTO } from '@modules/clients/dtos/ICreateClientDTO';
 import { Client } from '@modules/clients/infra/typeorm/entities/Client';
 
@@ -18,6 +20,11 @@ class ClientsRepositoryInMemory implements IClientsRepository {
 
   async findById(id: string): Promise<Client> {
     return this.clients.find((client) => client.id === id);
+  }
+
+  async delete(id: string): Promise<DeleteResult | void> {
+    const client = this.clients.find((c) => c.id === id);
+    this.clients.splice(this.clients.indexOf(client));
   }
 }
 
