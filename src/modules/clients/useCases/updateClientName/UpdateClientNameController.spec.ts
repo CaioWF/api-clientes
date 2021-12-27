@@ -47,4 +47,13 @@ describe('UpdateClientNameController', () => {
     expect(response.body.id).toEqual(id);
     expect(response.body.full_name).toEqual('another_name');
   });
+
+  it('should return bad request when id is invalid', async () => {
+    await request(app)
+      .patch('/clients/invalid_id')
+      .send({
+        full_name: 'another_name',
+      })
+      .expect(400);
+  });
 });
