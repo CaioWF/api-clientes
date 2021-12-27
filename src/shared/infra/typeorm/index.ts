@@ -1,6 +1,12 @@
-import { Connection, createConnection, getConnectionOptions } from 'typeorm';
+import { Connection, createConnection } from 'typeorm';
 
-export default async (host = 'database_clientes'): Promise<Connection> => {
-  const defaultOptions = await getConnectionOptions('default');
-  return createConnection(Object.assign(defaultOptions, { host }));
+import ormConfig from '../../../../ormconfig';
+
+export default async (): Promise<Connection> => {
+  const host =
+    (process.env.NODE_ENV === 'dev' && 'database_clientes') ||
+    ('host' in ormConfig && ormConfig.host) ||
+    'localhost';
+
+  return createConnection(Object.assign(ormConfig, { host }));
 };
