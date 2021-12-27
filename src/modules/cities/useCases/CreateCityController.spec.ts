@@ -23,4 +23,16 @@ describe('CreateCityController', () => {
       .send({ name: 'any_city', state: 'any_state' })
       .expect(201);
   });
+
+  it('should be able to create cities with same name and different states', async () => {
+    await request(app)
+      .post('/cities')
+      .send({ name: 'duplicated_name', state: 'any_state' })
+      .expect(201);
+
+    await request(app)
+      .post('/cities')
+      .send({ name: 'duplicated_name', state: 'another_state' })
+      .expect(201);
+  });
 });
