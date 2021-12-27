@@ -13,7 +13,7 @@ class FindClientByIdUseCase {
   ) {}
 
   async execute(id: string): Promise<Client> {
-    if (!validator.isUUID(id)) throw new AppError('Invalid id', 400);
+    if (!validator.isUUID(id)) throw new AppError('Invalid id');
 
     const client = await this.clientsRepository.findById(id);
 
