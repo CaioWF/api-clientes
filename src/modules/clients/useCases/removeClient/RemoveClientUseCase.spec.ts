@@ -1,6 +1,9 @@
+import { randomUUID } from 'crypto';
+
 import { GenderType } from '@modules/clients/infra/typeorm/entities/Client';
 import { IClientsRepository } from '@modules/clients/repositories/IClientsRepository';
 import { ClientsRepositoryInMemory } from '@modules/clients/repositories/inMemory/ClientsRepositoryInMemory';
+import { AppError } from '@shared/errors/AppError';
 
 import { RemoveClientUseCase } from './RemoveClientUseCase';
 
@@ -26,5 +29,11 @@ describe('RemoveClientUseCase', () => {
     const clientDeleted = await clientsRepositoryInMemory.findById(id);
 
     expect(clientDeleted).toBeUndefined();
+  });
+
+  it('should be throw an error when user not found', async () => {
+    await expect(
+      removeClientUseCase.execute(`${randomUUID()}`),
+    ).rejects.toEqual(new AppError('Client not found', 404));
   });
 });
