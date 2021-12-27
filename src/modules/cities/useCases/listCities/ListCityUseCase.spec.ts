@@ -65,4 +65,24 @@ describe('ListCityUseCase', () => {
     expect(listPaginated.cities).toEqual([city]);
     expect(listPaginated.pagination).toEqual({ skip: 0, take: 10 });
   });
+
+  it('should be able to list cities paginated skiping some cities', async () => {
+    await citiesRepositoryInMemory.create({
+      name: 'city',
+      state: 'state that not return',
+    });
+    const city = await citiesRepositoryInMemory.create({
+      name: 'city',
+      state: 'state that return',
+    });
+
+    const listPaginated = await listCityUseCase.execute({
+      filters: { skip: 1 },
+    });
+
+    expect(listPaginated).toHaveProperty('cities');
+    expect(listPaginated).toHaveProperty('pagination');
+    expect(listPaginated.cities).toEqual([city]);
+    expect(listPaginated.pagination).toEqual({ skip: 1, take: 10 });
+  });
 });
