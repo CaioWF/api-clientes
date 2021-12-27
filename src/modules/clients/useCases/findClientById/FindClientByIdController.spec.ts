@@ -44,4 +44,8 @@ describe('FindClientByIdController', () => {
     expect(response.status).toBe(200);
     expect(response.body).toHaveProperty('id');
   });
+
+  it('should return bad request when id is invalid', async () => {
+    await request(app).get('/clients/invalid_id').expect(400);
+  });
 });
