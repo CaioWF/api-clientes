@@ -36,4 +36,10 @@ describe('RemoveClientUseCase', () => {
       removeClientUseCase.execute(`${randomUUID()}`),
     ).rejects.toEqual(new AppError('Client not found', 404));
   });
+
+  it('should be throw an error when id is invalid', async () => {
+    await expect(removeClientUseCase.execute('invalid_id')).rejects.toEqual(
+      new AppError('Invalid id', 400),
+    );
+  });
 });
