@@ -68,12 +68,12 @@ describe('ListCityUseCase', () => {
 
   it('should be able to list cities paginated skiping some cities', async () => {
     await citiesRepositoryInMemory.create({
-      name: 'city',
-      state: 'state that not return',
+      name: 'city that not return',
+      state: 'state',
     });
     const city = await citiesRepositoryInMemory.create({
-      name: 'city',
-      state: 'state that return',
+      name: 'city that return',
+      state: 'state',
     });
 
     const listPaginated = await listCityUseCase.execute({
