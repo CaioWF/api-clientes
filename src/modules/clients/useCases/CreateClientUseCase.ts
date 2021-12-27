@@ -1,11 +1,17 @@
+import { inject, injectable } from 'tsyringe';
+
 import { AppError } from '@shared/errors/AppError';
 
 import { ICreateClientDTO } from '../dtos/ICreateClientDTO';
 import { Client, GenderType } from '../infra/typeorm/entities/Client';
 import { IClientsRepository } from '../repositories/IClientsRepository';
 
+@injectable()
 class CreateClientUseCase {
-  constructor(private clientRepository: IClientsRepository) {}
+  constructor(
+    @inject('ClientsRepository')
+    private clientRepository: IClientsRepository,
+  ) {}
 
   async execute({
     full_name,
