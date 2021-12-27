@@ -11,10 +11,17 @@ class ClientsRepository implements IClientsRepository {
   constructor() {
     this.repository = getRepository(Client);
   }
-  create(data: ICreateClientDTO): Promise<Client> {
+
+  async create(data: ICreateClientDTO): Promise<Client> {
     const client = this.repository.create(data);
 
     return this.repository.save(client);
+  }
+
+  async findById(id: string): Promise<Client> {
+    const client = await this.repository.findOne(id);
+
+    return client;
   }
 }
 
