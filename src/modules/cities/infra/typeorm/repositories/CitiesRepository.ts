@@ -19,7 +19,7 @@ class CitiesRepository implements ICitiesRepository {
     return this.repository.save(city);
   }
 
-  async paginate({ filters }: IListCitiesDTO): Promise<City[]> {
+  async paginate(filters: IListCitiesDTO): Promise<City[]> {
     const citiesQuery = await this.repository.createQueryBuilder('c');
 
     if (filters.name)

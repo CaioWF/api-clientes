@@ -11,14 +11,15 @@ class ListCitiesUseCase {
     private citiesRepository: ICitiesRepository,
   ) {}
 
-  async execute({ filters }: IListCitiesDTO): Promise<{
+  async execute({ name, state, skip, take }: IListCitiesDTO): Promise<{
     cities: City[];
     pagination: { skip: number; take: number };
   }> {
-    if (!('skip' in filters)) Object.assign(filters, { skip: 0 });
-    if (!('take' in filters)) Object.assign(filters, { take: 10 });
+    const filters = { name, state, skip, take };
+    if (!skip) filters.skip = 0;
+    if (!take) filters.take = 10;
 
-    const cities = await this.citiesRepository.paginate({ filters });
+    const cities = await this.citiesRepository.paginate(filters);
 
     return { cities, pagination: { skip: filters.skip, take: filters.take } };
   }

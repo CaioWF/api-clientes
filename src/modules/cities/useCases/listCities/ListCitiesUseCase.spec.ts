@@ -18,7 +18,7 @@ describe('ListCitiesUseCase', () => {
       state: 'state list',
     });
 
-    const listPaginated = await listCitiesUseCase.execute({ filters: {} });
+    const listPaginated = await listCitiesUseCase.execute({});
 
     expect(listPaginated).toHaveProperty('cities');
     expect(listPaginated).toHaveProperty('pagination');
@@ -37,7 +37,7 @@ describe('ListCitiesUseCase', () => {
     });
 
     const listPaginated = await listCitiesUseCase.execute({
-      filters: { name: 'that return' },
+      name: 'that return',
     });
 
     expect(listPaginated).toHaveProperty('cities');
@@ -57,7 +57,7 @@ describe('ListCitiesUseCase', () => {
     });
 
     const listPaginated = await listCitiesUseCase.execute({
-      filters: { state: 'that return' },
+      state: 'that return',
     });
 
     expect(listPaginated).toHaveProperty('cities');
@@ -77,7 +77,7 @@ describe('ListCitiesUseCase', () => {
     });
 
     const listPaginated = await listCitiesUseCase.execute({
-      filters: { skip: 1 },
+      skip: 1,
     });
 
     expect(listPaginated).toHaveProperty('cities');
@@ -97,7 +97,7 @@ describe('ListCitiesUseCase', () => {
     });
 
     const listPaginated = await listCitiesUseCase.execute({
-      filters: { take: 1 },
+      take: 1,
     });
 
     expect(listPaginated).toHaveProperty('cities');
@@ -121,7 +121,10 @@ describe('ListCitiesUseCase', () => {
     });
 
     const listPaginated = await listCitiesUseCase.execute({
-      filters: { name: 'city', state: 'state', skip: 1, take: 1 },
+      name: 'city',
+      state: 'state',
+      skip: 1,
+      take: 1,
     });
 
     expect(listPaginated).toHaveProperty('cities');

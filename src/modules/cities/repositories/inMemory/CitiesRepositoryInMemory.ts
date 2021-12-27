@@ -17,7 +17,7 @@ class CitiesRepositoryInMemory implements ICitiesRepository {
     return city;
   }
 
-  async paginate({ filters }: IListCitiesDTO): Promise<City[]> {
+  async paginate(filters: IListCitiesDTO): Promise<City[]> {
     const cities = this.cities.filter(
       (city) =>
         (!filters.name || city.name.includes(filters.name)) &&
