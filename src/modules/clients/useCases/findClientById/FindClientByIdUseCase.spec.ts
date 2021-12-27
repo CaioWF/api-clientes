@@ -1,3 +1,5 @@
+import { randomUUID } from 'crypto';
+
 import { GenderType } from '@modules/clients/infra/typeorm/entities/Client';
 import { IClientsRepository } from '@modules/clients/repositories/IClientsRepository';
 import { ClientsRepositoryInMemory } from '@modules/clients/repositories/inMemory/ClientsRepositoryInMemory';
@@ -31,7 +33,13 @@ describe('FindClientByIdUseCase', () => {
 
   it('should be throw an error when user not be found', async () => {
     await expect(
-      findClientByIdUseCase.execute('inexistent_user'),
+      findClientByIdUseCase.execute(`${randomUUID()}`),
     ).rejects.toEqual(new AppError('User not found', 404));
+  });
+
+  it('should be throw an error when id is invalid', async () => {
+    await expect(findClientByIdUseCase.execute('invalid_id')).rejects.toEqual(
+      new AppError('Invalid id', 400),
+    );
   });
 });
