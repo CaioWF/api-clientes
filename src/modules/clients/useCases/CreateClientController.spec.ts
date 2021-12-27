@@ -36,4 +36,16 @@ describe('CreateClientController', () => {
       })
       .expect(201);
   });
+
+  it('should not be able to create a new client with unmapped gender', async () => {
+    await request(app)
+      .post('/clients')
+      .send({
+        full_name: 'any_name',
+        gender: 'unmapped_gender',
+        birth_date: '2000-01-01',
+        city_id: sharedCity.id,
+      })
+      .expect(422);
+  });
 });
