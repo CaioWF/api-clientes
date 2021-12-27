@@ -31,7 +31,7 @@ describe('RemoveClientUseCase', () => {
     expect(clientDeleted).toBeUndefined();
   });
 
-  it('should be throw an error when user not found', async () => {
+  it('should be throw an error when client not found', async () => {
     await expect(
       removeClientUseCase.execute(`${randomUUID()}`),
     ).rejects.toEqual(new AppError('Client not found', 404));
