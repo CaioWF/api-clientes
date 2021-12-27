@@ -19,15 +19,20 @@ class CitiesRepository implements ICitiesRepository {
     return this.repository.save(city);
   }
 
-  async paginate(filters: IListCitiesDTO): Promise<City[]> {
-    const citiesQuery = await this.repository.createQueryBuilder('c');
+  async paginate({ name, state, skip, take }: IListCitiesDTO): Promise<City[]> {
+    const citiesQuery = await this.repository
+      .createQueryBuilder('c')
+      .skip(skip)
+      .take(take);
 
-    if (filters.name)
-      citiesQuery.andWhere('c.name like :name', { name: `%${filters.name}%` });
+    if (name)
+      citiesQuery.andWhere('LOWER(c.name) like LOWER(:name)', {
+        name: `%${name}%`,
+      });
 
-    if (filters.state)
-      citiesQuery.andWhere('c.state like :state', {
-        state: `%${filters.state}%`,
+    if (state)
+      citiesQuery.andWhere('LOWER(c.state) like LOWER(:state)', {
+        state: `%${state}%`,
       });
 
     return citiesQuery.getMany();
