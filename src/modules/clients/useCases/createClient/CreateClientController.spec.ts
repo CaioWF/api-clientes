@@ -5,7 +5,7 @@ import { City } from '@modules/cities/infra/typeorm/entities/City';
 import { GenderType } from '@modules/clients/infra/typeorm/entities/Client';
 import createConnection from '@shared/infra/typeorm';
 
-import { app } from '../../../app';
+import { app } from '../../../../app';
 
 let connection: Connection;
 let sharedCity: City;

@@ -1,8 +1,8 @@
+import { GenderType } from '@modules/clients/infra/typeorm/entities/Client';
+import { IClientsRepository } from '@modules/clients/repositories/IClientsRepository';
+import { ClientsRepositoryInMemory } from '@modules/clients/repositories/inMemory/ClientsRepositoryInMemory';
 import { AppError } from '@shared/errors/AppError';
 
-import { GenderType } from '../infra/typeorm/entities/Client';
-import { IClientsRepository } from '../repositories/IClientsRepository';
-import { ClientsRepositoryInMemory } from '../repositories/inMemory/ClientsRepositoryInMemory';
 import { CreateClientUseCase } from './CreateClientUseCase';
 
 describe('CreateClientUseCase', () => {

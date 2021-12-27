@@ -1,10 +1,12 @@
 import { inject, injectable } from 'tsyringe';
 
+import { ICreateClientDTO } from '@modules/clients/dtos/ICreateClientDTO';
+import {
+  Client,
+  GenderType,
+} from '@modules/clients/infra/typeorm/entities/Client';
+import { IClientsRepository } from '@modules/clients/repositories/IClientsRepository';
 import { AppError } from '@shared/errors/AppError';
-
-import { ICreateClientDTO } from '../dtos/ICreateClientDTO';
-import { Client, GenderType } from '../infra/typeorm/entities/Client';
-import { IClientsRepository } from '../repositories/IClientsRepository';
 
 @injectable()
 class CreateClientUseCase {
