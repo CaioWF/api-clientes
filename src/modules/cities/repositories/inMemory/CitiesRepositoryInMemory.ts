@@ -24,7 +24,7 @@ class CitiesRepositoryInMemory implements ICitiesRepository {
         (!filters.state || city.state.includes(filters.state)),
     );
 
-    return cities.slice(filters.skip, filters.skip + filters.take - 1);
+    return cities.slice(filters.skip, filters.skip + filters.take);
   }
 
   async exists(data: ICreateCityDTO): Promise<boolean> {
