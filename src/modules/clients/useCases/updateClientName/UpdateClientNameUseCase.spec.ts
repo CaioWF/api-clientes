@@ -1,6 +1,9 @@
+import { randomUUID } from 'crypto';
+
 import { GenderType } from '@modules/clients/infra/typeorm/entities/Client';
 import { IClientsRepository } from '@modules/clients/repositories/IClientsRepository';
 import { ClientsRepositoryInMemory } from '@modules/clients/repositories/inMemory/ClientsRepositoryInMemory';
+import { AppError } from '@shared/errors/AppError';
 
 import { UpdateClientNameUseCase } from './UpdateClientNameUseCase';
 
@@ -30,5 +33,14 @@ describe('UpdateClientNameUseCase', () => {
 
     expect(client.id).toEqual(id);
     expect(client.full_name).toEqual('another_name');
+  });
+
+  it('should be throw an error when client not found', async () => {
+    await expect(
+      updateClientNameUseCase.execute({
+        id: `${randomUUID()}`,
+        full_name: 'any_name',
+      }),
+    ).rejects.toEqual(new AppError('Client not found', 404));
   });
 });
