@@ -35,4 +35,24 @@ describe('ListCitiesController', () => {
     expect(response.body.cities[0]).toHaveProperty('id');
     expect(response.body.cities[0].name).toEqual('city');
   });
+
+  it('should be able to list cities paginated filtering by name', async () => {
+    await request(app)
+      .post('/cities')
+      .send({ name: 'city', state: 'state' })
+      .expect(201);
+
+    await request(app)
+      .post('/cities')
+      .send({ name: 'another city', state: 'state' })
+      .expect(201);
+
+    const response = await request(app).get('/cities').query({ name: 'cit' });
+
+    expect(response.status).toBe(200);
+    expect(response.body).toHaveProperty('cities');
+    expect(response.body).toHaveProperty('pagination');
+    expect(response.body.cities[0]).toHaveProperty('id');
+    expect(response.body.cities[0].name).toEqual('city');
+  });
 });
