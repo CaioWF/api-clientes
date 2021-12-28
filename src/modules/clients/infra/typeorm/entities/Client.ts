@@ -35,6 +35,9 @@ class Client {
   @JoinColumn({ name: 'city_id' })
   city: City;
 
+  @Column()
+  city_id: string;
+
   @CreateDateColumn()
   created_at: Date;
 
