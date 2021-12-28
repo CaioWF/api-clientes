@@ -63,6 +63,74 @@
             }
           }
         }
+      },
+      "get": {
+        "tags": ["City"],
+        "summary": "List cities",
+        "description": "List paginated cities with or without filters",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "description": "Part of the city name",
+            "required": false,
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "state",
+            "in": "query",
+            "description": "Part of the state name",
+            "required": false,
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "Number of records to be skipped",
+            "required": false,
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "take",
+            "in": "query",
+            "description": "Number of records to be taken",
+            "required": false,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "cities": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/definitions/CityResponseBody"
+                      }
+                    },
+                    "pagination": {
+                      "$ref": "#/definitions/Pagination"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/InternalError"
+                }
+              }
+            }
+          }
+        }
       }
     }
   },
@@ -118,6 +186,21 @@
       "example": {
         "status": "error",
         "message": "Internal server error - some error"
+      }
+    },
+    "Pagination": {
+      "type": "object",
+      "properties": {
+        "skip": {
+          "type": "number"
+        },
+        "take": {
+          "type": "number"
+        }
+      },
+      "example": {
+        "skip": 0,
+        "take": 10
       }
     }
   }
