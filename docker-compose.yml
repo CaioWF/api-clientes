@@ -27,6 +27,8 @@ services:
   app:
     build: .
     container_name: api-clientes
+    environment:
+      - NODE_ENV=docker
     ports:
       - 3333:3333
     volumes:
