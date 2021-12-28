@@ -10,7 +10,9 @@ Run the command `docker-compose up` or `docker-compose up -d` (if you want the i
 
 If you are running in the background and want to see the logs just use the command `docker logs api-clients -f`.
 
-> To run the api without the docker, first run `yarn`, then you will need to stop the api in the docker called ***api-clients*** and run `yarn dev` or set an env called PORT with a value other than 3333 and run `yarn dev`.
+Run the command `yarn`.
+
+> To run the api without the docker is necessary to stop the api in the docker called ***api-clients*** and run `yarn dev` or set an env called PORT with a value other than 3333 and run `yarn dev`.
 
 After running the project you need to run migrations, use the command `yarn typeorm migration:run`.
 
