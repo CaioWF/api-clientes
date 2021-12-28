@@ -7,5 +7,118 @@
     "contact": {
       "email": "contato.caioweliton@gmail.com"
     }
+  },
+  "paths": {
+    "/cities": {
+      "post": {
+        "tags": ["City"],
+        "summary": "Create city",
+        "description": "Create a new city",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/CityRequestBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/CityResponseBody"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "example": {
+                    "message": "City already exists"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/InternalError"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "CityRequestBody": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "state": {
+          "type": "string"
+        }
+      },
+      "example": {
+        "name": "any_city",
+        "state": "any_state"
+      }
+    },
+    "CityResponseBody": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "uuid"
+        },
+        "name": {
+          "type": "string"
+        },
+        "state": {
+          "type": "string"
+        },
+        "created_at": {
+          "type": "date"
+        }
+      },
+      "example": {
+        "id": "dd60f3a6-2453-4961-8ca7-3bca56822118",
+        "name": "any_city",
+        "state": "any_state",
+        "created_at": "2021-12-28T12:25:23.521Z"
+      }
+    },
+    "InternalError": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      },
+      "example": {
+        "status": "error",
+        "message": "Internal server error - some error"
+      }
+    }
   }
 }
