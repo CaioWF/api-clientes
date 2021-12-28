@@ -1,0 +1,11 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "API Clients",
+    "description": "This is an API to handle clients",
+    "version": "1.0.0",
+    "contact": {
+      "email": "contato.caioweliton@gmail.com"
+    }
+  }
+}
