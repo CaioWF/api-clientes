@@ -1,5 +1,7 @@
 import { container } from 'tsyringe';
 
+import '@shared/container/providers';
+
 import { CitiesRepository } from '@modules/cities/infra/typeorm/repositories/CitiesRepository';
 import { ICitiesRepository } from '@modules/cities/repositories/ICitiesRepository';
 import { ClientsRepository } from '@modules/clients/infra/typeorm/repositories/ClientsRepository';
