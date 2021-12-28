@@ -39,6 +39,7 @@ class ClientsRepository implements IClientsRepository {
   }: IListClientsDTO): Promise<Client[]> {
     const clientsQuery = await this.repository
       .createQueryBuilder('c')
+      .leftJoinAndSelect('c.city', 'cities')
       .skip(skip)
       .take(take);
 
