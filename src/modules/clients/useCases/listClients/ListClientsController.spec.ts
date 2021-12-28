@@ -138,4 +138,45 @@ describe('ListClientsController', () => {
     expect(response.body).toHaveProperty('pagination');
     expect(response.body.clients.length).toEqual(1);
   });
+
+  it('should be able to list clients paginated using all filters', async () => {
+    await request(app)
+      .post('/clients')
+      .send({
+        full_name: 'any_name',
+        gender: GenderType.MALE,
+        birth_date: '2000-01-01',
+        city_id: sharedCity.id,
+      })
+      .expect(201);
+
+    await request(app)
+      .post('/clients')
+      .send({
+        full_name: 'another_name',
+        gender: GenderType.MALE,
+        birth_date: '2000-01-01',
+        city_id: sharedCity.id,
+      })
+      .expect(201);
+
+    await request(app)
+      .post('/clients')
+      .send({
+        full_name: 'one_more_name',
+        gender: GenderType.MALE,
+        birth_date: '2000-01-01',
+        city_id: sharedCity.id,
+      })
+      .expect(201);
+
+    const response = await request(app)
+      .get('/clients')
+      .query({ name: 'name', skip: 1, take: 1 });
+
+    expect(response.status).toBe(200);
+    expect(response.body).toHaveProperty('clients');
+    expect(response.body).toHaveProperty('pagination');
+    expect(response.body.clients.length).toEqual(1);
+  });
 });
