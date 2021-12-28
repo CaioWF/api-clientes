@@ -306,6 +306,71 @@
             }
           }
         }
+      },
+      "patch": {
+        "tags": ["Client"],
+        "summary": "Update client name",
+        "description": "Update a client name by id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Client id",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/ClientUpdateNameRequestBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/ClientResponseBody1"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/InvalidIdError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/ClientNotFound"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/InternalError"
+                }
+              }
+            }
+          }
+        }
       }
     }
   },
@@ -496,6 +561,17 @@
       },
       "example": {
         "message": "Client not found"
+      }
+    },
+    "ClientUpdateNameRequestBody": {
+      "type": "object",
+      "properties": {
+        "full_name": {
+          "type": "string"
+        }
+      },
+      "example": {
+        "full_name": "John Doe Updated"
       }
     }
   }
